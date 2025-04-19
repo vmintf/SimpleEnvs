@@ -29,7 +29,7 @@ A lightweight, secure, and idiomatic Zig library for loading and parsing `.env` 
 1. Clone or copy the library to your project:
 
    ```bash
-   git clone https://github.com/<your-repo>/zig-dotenv.git
+   git clone https://github.com/vmintf/SimpleEnvs.git
    ```
 
 2. Add it to your `build.zig`:
