@@ -61,7 +61,7 @@ A lightweight, secure, and idiomatic Zig library for loading and parsing `.env` 
 3. Import and use in your code:
 
    ```zig
-   const env = @import("Simple");
+   const env = @import("env");
    ```
 
 ## Usage
