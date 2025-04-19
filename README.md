@@ -48,7 +48,7 @@ A lightweight, secure, and idiomatic Zig library for loading and parsing `.env` 
            .optimize = optimize,
        });
    
-       // Add zig-dotenv as a module
+       // Add SimpleEnvs as a module
        const dotenv_module = b.addModule("env", .{
            .root_source_file = b.path("src/root.zig"),
        });
