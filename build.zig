@@ -28,7 +28,7 @@ pub fn build(b: *std.Build) void {
     exe_mod.addImport("env", lib_mod);
 
     const exe = b.addExecutable(.{
-        .name = "SimpleDotEnvDemo",
+        .name = "SimpleEnvsDemo",
         .root_module = exe_mod,
     });
     b.installArtifact(exe);
