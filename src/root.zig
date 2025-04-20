@@ -42,16 +42,19 @@ pub fn deinit(map: *EnvMap) void {
 
 test "loadAuto" {
     const allocator = std.testing.allocator;
-    const path = "./src/.env.test";
-    const file = try std.fs.cwd().createFile(path, .{ .truncate = true });
-    try file.writeAll("DB_HOST=localhost\nDB_PORT=5432\n");
-    defer file.close();
-    defer std.fs.cwd().deleteFile(path) catch {};
+    // const path = "./src/.env.test";
+    // const file = try std.fs.cwd().createFile(path, .{ .truncate = true });
+    // try file.writeAll("DB_HOST=localhost\nDB_PORT=5432\n");
+    // defer file.close();
+    // defer std.fs.cwd().deleteFile(path) catch {};
 
     var env_map = try loadAuto(allocator);
     defer deinit(&env_map);
 
     try std.testing.expect(env_map.contains("DB_HOST"));
     try std.testing.expect((env_map.get("DB_HOST") orelse return error.NoValue).eql(Value{ .String = "localhost" }));
-    try std.testing.expectEqual(Value{ .Number = 5432 }, env_map.getWithDefault("DB_PORT", Value{ .Number = 0 }));
+    try std.testing.expect(env_map.contains("DB_PORT"));
+    try std.testing.expect((env_map.get("DB_PORT") orelse return error.NoValue).eql(Value{ .Number = 5432 }));
+    try std.testing.expect(env_map.contains("DEBUG"));
+    try std.testing.expect((env_map.get("DEBUG") orelse return error.NoValue).eql(Value{ .Boolean = true }));
 }
