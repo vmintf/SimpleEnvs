@@ -83,10 +83,10 @@ pub fn main() !void {
     defer env.deinit(&env_map); // Always call to free memory
 
     if (env.get(env_map, "DB_HOST")) |host| {
-        std.debug.print("DB_HOST: {}\n", .{host}); // Outputs: DB_HOST: localhost
+        std.debug.print("DB_HOST: {any}\n", .{host}); // Outputs: DB_HOST: localhost
     }
     const port = env.getWithDefault(env_map, "DB_PORT", env.Value{ .Number = 8080 });
-    std.debug.print("DB_PORT: {}\n", .{port}); // Outputs: DB_PORT: 5432
+    std.debug.print("DB_PORT: {any}\n", .{port}); // Outputs: DB_PORT: 5432
 }
 ```
 
@@ -118,7 +118,7 @@ pub fn main() !void {
     defer env.deinit(&env_map);
 
     if (env.get(env_map, "API_KEY")) |key| {
-        std.debug.print("API_KEY: {}\n", .{key});
+        std.debug.print("API_KEY: {any}\n", .{key});
     }
 }
 ```
