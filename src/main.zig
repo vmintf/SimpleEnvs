@@ -1,4 +1,4 @@
-const env = @import("env");
+const env = @import("SimpleEnvs");
 const std = @import("std");
 
 pub fn main() !void {
@@ -7,14 +7,14 @@ pub fn main() !void {
     const allocator = gpa.allocator();
 
     var env_map = env.loadAuto(allocator) catch |e| {
-        std.debug.print("Failed to load .env: {}\n", .{e});
+        std.debug.print("Failed to load .env: {any}\n", .{e});
         return e;
     };
     defer env.deinit(&env_map);
 
     if (env.get(env_map, "DB_HOST")) |host| {
-        std.debug.print("DB_HOST: {}\n", .{host});
+        std.debug.print("DB_HOST: {any}\n", .{host});
     }
     const port = env.getWithDefault(env_map, "DB_PORT", env.Value{ .Number = 8080 });
-    std.debug.print("DB_PORT: {}\n", .{port});
+    std.debug.print("DB_PORT: {any}\n", .{port});
 }

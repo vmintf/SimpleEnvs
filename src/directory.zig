@@ -8,7 +8,7 @@ pub fn scanForEnvFile(allocator: std.mem.Allocator, path: []const u8, max_depth:
 
     var dir = fs.cwd().openDir(path, .{ .iterate = true, .no_follow = true }) catch |e| {
         if (@import("builtin").mode == .Debug) {
-            std.debug.print("Failed to open directory '{s}': {}\n", .{ path, e });
+            std.debug.print("Failed to open directory '{s}': {any}\n", .{ path, e });
         }
         return null;
     };

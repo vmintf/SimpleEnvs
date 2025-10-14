@@ -40,8 +40,8 @@ pub const Value = union(enum) {
         _ = options;
         switch (self) {
             .String => |s| try writer.print("{s}", .{s}),
-            .Number => |n| try writer.print("{}", .{n}),
-            .Boolean => |b| try writer.print("{}", .{b}),
+            .Number => |n| try writer.print("{any}", .{n}),
+            .Boolean => |b| try writer.print("{any}", .{b}),
         }
     }
 };
@@ -53,7 +53,7 @@ pub fn parseEnvFile(allocator: std.mem.Allocator, path: []const u8) !EnvMap {
 
     const file = std.fs.cwd().openFile(path, .{}) catch |e| {
         if (@import("builtin").mode == .Debug) {
-            std.debug.print("Failed to open file '{s}': {}\n", .{ path, e });
+            std.debug.print("Failed to open file '{s}': {any}\n", .{ path, e });
         }
         return e;
     };
