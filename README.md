@@ -22,7 +22,7 @@ A lightweight, secure, and idiomatic Zig library for loading and parsing `.env` 
 
 ### Prerequisites
 
-- Zig 0.14.0 or later.
+- Zig 0.15.0 or later.
 
 ### Adding to Your Project
 
